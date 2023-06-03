@@ -1,0 +1,254 @@
+
+############## products #########################
+GET http://localhost:3300/api/v1/products
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWZiYWEwMDE4ZWVhYjA1NDM2ZDI2M2IiLCJpYXQiOjE2NDM5NTI0MTYsImV4cCI6MTY0NDAzODgxNn0.utebDUYfBSm75s6_mtmfKt2jv-VJQ8nysLMXvX8-_po
+###
+##get by queryparams
+GET http://localhost:3300/api/v1/products?categories=61f55311f5412aec4b0c15cf
+
+#####
+# get by id and populate category values
+GET http://localhost:3300/api/v1/products/620de744d4b121661b62453b
+#####
+
+POST http://localhost:3300/api/v1/products
+Content-Type: application/json
+
+{
+        "name": "62 Pro 7 128GB",
+        "description": "samsung" ,
+        "richDescription": "sam",
+        "image": "product1/jpg.jpg",
+        "brand": "brand",
+        "price": 7000,
+        "category":"61f55311f5412aec4b0c15cf",
+        "countInStock": 6,
+        "rating": 6,
+        "numReviews":7 ,
+        "isFeatured": true,
+        "dateCreated":  "2021-04-11T10:52:24.756+00:00"
+}
+
+#####
+# update product by id and populate category values and also you can just provide particular field name to update in json
+PUT http://localhost:3300/api/v1/products/5fa5bf8d9791235c46678e15
+Content-Type: application/json
+
+{
+        "name": "62 Pro 7 256GB",
+        "description": "samsung" ,
+        "richDescription": "sam",
+        "image": "product1/jpg.jpg",
+        "brand": "brand",
+        "price": 9000,
+        "category":"61f55311f5412aec4b0c15cf",
+        "countInStock": 6,
+        "rating": 6,
+        "numReviews":7 ,
+        "isFeatured": true,
+        "dateCreated":  "2021-04-11T10:52:24.756+00:00"
+}
+##### updating gallery images in array, put request form-data, multiple select
+PUT http://localhost:3300/api/v1/products/gallery-images/620de744d4b121661b62453b
+Content-Type: application/json
+
+{
+        "name": "62 Pro 7 256GB",
+        "description": "samsung" ,
+        "richDescription": "sam",
+        "image": "product1/jpg.jpg", //profile image , make empty while updating fields
+        "brand": "brand",
+        "price": 9000,
+        "category":"61f55311f5412aec4b0c15cf",
+        "countInStock": 6,
+        "rating": 6,
+        "numReviews":7 ,
+        "isFeatured": true,
+        "dateCreated":  "2021-04-11T10:52:24.756+00:00", // no need to provide or your choice
+        "images": 
+}
+{
+        "images": //
+}
+#####
+#####
+# delete product by id 
+delete http://localhost:3300/api/v1/products/61f56196d0248411700ff401
+
+#######
+# get product counts
+GET http://localhost:3300/api/v1/products/get/count
+#####
+
+# get product featured
+GET http://localhost:3300/api/v1/products/get/featured/5
+#####
+
+############## orders #########################
+#
+GET http://localhost:3300/api/v1/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWZiYWEwMDE4ZWVhYjA1NDM2ZDI2M2IiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDQ1MTAwNzcsImV4cCI6MTY0NDU5NjQ3N30.1dLHPabflXENIYk-6iASiAc5ghhJ5129mb5h2pmdirw
+#####
+
+# Get total sales order
+GET http://localhost:3300/api/v1/orders/get/totalsales
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWZiYWEwMDE4ZWVhYjA1NDM2ZDI2M2IiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDQ5MTIwODAsImV4cCI6MTY0NDk5ODQ4MH0.HObcLj0S6Pd-ijz6iKZdYxpCl6K0coYzGs0cGqpTvtQ
+#####
+
+#
+GET http://localhost:3300/api/v1/orders/6204e84df4ba8d972e8d49d2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWZiYWEwMDE4ZWVhYjA1NDM2ZDI2M2IiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDQ5MTIwODAsImV4cCI6MTY0NDk5ODQ4MH0.HObcLj0S6Pd-ijz6iKZdYxpCl6K0coYzGs0cGqpTvtQ
+#####
+
+POST http://localhost:3300/api/v1/orders
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWZiYWEwMDE4ZWVhYjA1NDM2ZDI2M2IiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDQ1MTAwNzcsImV4cCI6MTY0NDU5NjQ3N30.1dLHPabflXENIYk-6iASiAc5ghhJ5129mb5h2pmdirw
+Content-Type: application/json
+
+{
+    "orderItems" : [
+        {
+            "quantity": 3,
+            "product" : "5fcfc406ae79b0a6a90d2585"
+        },
+        {
+            "quantity": 2,
+            "product" : "5fd293c7d3abe7295b1403c4"
+        }
+    ],
+    "shippingAddress1" : "Das Street , 45",
+    "shippingAddress2" : "1-B",
+    "city": "Prague",
+    "zip": "00000",
+    "country": "Czech Republic",
+    "phone": "+420702241333",
+    "user": "5fd51bc7e39ba856244a3b44"
+}
+
+# update order status by id
+
+PUT http://localhost:3300/api/v1/orders/61932bc26e5271f2358385d9 HTTP/1.1
+
+Content-Type: application/json
+{
+    "status": "shipped"
+}
+
+# delete orders by id 
+delete http://localhost:3300/api/v1/orders/61932bc26e5271f2358385d9 HTTP/1.1
+
+#######
+
+#######
+# get orders counts
+GET http://localhost:3300/api/v1/orders/get/count
+#####
+
+
+############## categories ##########################################
+
+GET http://localhost:3300/api/v1/categories
+
+#####
+# get by id
+GET http://localhost:3300/api/v1/categories/5f15d467f3a046427a1c26e1
+
+##### 
+POST http://localhost:3300/api/v1/categories
+Content-Type: application/json
+
+{
+    "name": "cross",
+    "icon": "nav",
+    "color": "red"
+}
+
+#####
+# delete by id
+delete http://localhost:3300/api/v1/categories/61932bc26e5271f2358385d9
+Content-Type: application/json
+
+{
+    "name": "cross",
+    "icon": "nav",
+    "color": "red"
+}
+
+########
+# update by id
+
+PUT http://localhost:3300/api/v1/categories/61932bc26e5271f2358385d9 HTTP/1.1
+
+Content-Type: application/json
+{
+    "name": "cross",
+    "icon": "nav",
+    "color": "red"
+}
+############## users #########################
+##get all users list
+GET http://localhost:3300/api/v1/users
+
+##### get user by id
+GET http://localhost:3300/api/v1/users/5f168810be2e99a158c08505
+
+#####
+
+#####
+##### post new user data
+POST http://localhost:3300/api/v1/users/newUser
+Content-Type: application/json
+
+{
+    "name": "BittooDas",
+    "email": "Bdas@gmail.com",
+    "password": "1233456787",
+    "phone": "8285915392",
+    "isAdmin": true,
+    "street": "",
+    "apartment": "",
+    "zip": "110078",
+    "city": "Delhi",
+    "country": "India"
+}
+
+#####
+##### update user data put
+PUT http://localhost:3300/api/v1/users/61fbaa0018eeab05436d263b
+Content-Type: application/json
+
+{
+    "name": "Bittoo Das",
+    "email": "btdas@gmail.com",
+    "password": "1233456787",
+    "phone": "8285915392",
+    "isAdmin": true,
+    "street": "",
+    "apartment": "",
+    "zip": "110078",
+    "city": "Delhi",
+    "country": "India"
+}
+
+##### 
+##### user loginnnnnnnnnnnn 
+POST http://localhost:3300/api/v1/users/login
+Content-Type: application/json
+
+{
+    "email": "btdas@gmail.com",
+    "password": "1233456787"
+}
+
+#####
+
+#######
+# get Users counts
+GET http://localhost:3300/api/v1/users/get/count
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MWZiYWEwMDE4ZWVhYjA1NDM2ZDI2M2IiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NDM5NzMwMjEsImV4cCI6MTY0NDA1OTQyMX0.T1wgtIaaZ1sUWqcpdz2LNFhYXDiKD1F5vNAzft7UJS8
+#####
+
+# delete user by id change userid
+delete http://localhost:3300/api/v1/users/61f56196d0248411700ff401
+
+#######
